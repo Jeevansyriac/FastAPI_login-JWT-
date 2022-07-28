@@ -1,9 +1,10 @@
 from enum import unique
 from operator import index
 from sqlalchemy import  Column, Integer, String,true
-from app.db import Base
+from db import Base
 from sqlalchemy.orm import relationship
 from pydantic import BaseModel, Field, EmailStr
+
 
 
 class book(Base):
@@ -12,7 +13,7 @@ class book(Base):
     title        =   Column(String(255), index=True, nullable=False)
     price        = Column(String(255), index=True, nullable=False)
 
- 
+    
 class User(Base):
     
     __tablename__ = "user_table"
@@ -20,11 +21,9 @@ class User(Base):
     name          = Column(String(255), index=True, nullable=False)
     email         = Column(String(100), index=True, nullable=False,unique=True)
 
-    
 
 class UserLogin(Base):
     __tablename__="userlogin_table"
+    id            = Column(Integer, primary_key=True, autoincrement=True, index=True, nullable=False)
     email        = Column(String(100), index=True, nullable=False,unique=True)
     password     = Column(String(255), index=True, nullable=False)
-
-   
